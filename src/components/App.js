@@ -1,15 +1,13 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
-import Module from "./Module";
+import DisplayData from "./DisplayData";
 
 const GlobalStyles = createGlobalStyle`
 
 html{
-  font-size: 10px;
+  font-size: 15px;
 }
 body{
   padding:0;
@@ -29,46 +27,23 @@ const H1 = styled.h1`
 const client = new ApolloClient({
   uri: `https://swapi.apis.guru`
 });
-const getData = gql`
-  {
-    allPlanets {
-      planets {
-        name
-        gravity
-        diameter
-        population
-        rotationPeriod
-      }
-    }
-  }
-`;
 
-function App() {
+
+class App extends React.Component {
+  state={
+    page:1,
+    selected:false
+  }
+  render(){
   return (
     <>
       <ApolloProvider client={client}>
-        <GlobalStyles />
-        <H1 big isWhite>
-          Planets
-        </H1>
-        <Query query={getData}>
-          {({ loading, error, data }) => {
-            if (loading) return "Loading...";
-            if (error) return `Error! ${error.message}`;
-
-            console.log(data);
-            // data.dogs.map(dog => (
-            //   <option key={dog.id} value={dog.breed}>
-            //     {dog.breed}
-            //   </option>
-            // ));
-          }}
-        </Query>
-
-        <Module />
+      <GlobalStyles/>
+        <DisplayData />
       </ApolloProvider>
     </>
   );
+}
 }
 
 export default App;
