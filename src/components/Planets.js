@@ -31,7 +31,7 @@ class Planets extends React.Component {
       }
     }
   }
-  handlePage = e => {
+  handlePageChange = e => {
     const value = e.target.name === "next" ? 1 : -1;
     const currPage = this.state.page;
     var page = currPage;
@@ -74,15 +74,13 @@ class Planets extends React.Component {
   render() {
     return (
       <>
-        <h1>
-          Planets list {this.state.page} / {this.state.pagesCount}
-        </h1>
+        <h1>Planets list</h1>
         <ul>{this.displayPlanets()}</ul>
-        <button name="prev" onClick={this.handlePage}>
+        <button name="prev" onClick={this.handlePageChange}>
           prev
         </button>
         <Pagination page={this.state.page} count={this.state.pagesCount} />
-        <button name="next" onClick={this.handlePage}>
+        <button name="next" onClick={this.handlePageChange}>
           next
         </button>
       </>

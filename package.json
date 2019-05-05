@@ -2,6 +2,7 @@
   "name": "wp-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://maciejf.pl/planetsApp/",
   "dependencies": {
     "apollo-boost": "^0.3.1",
     "graphql": "^14.2.1",
