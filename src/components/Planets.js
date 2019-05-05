@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { getPlanetsList } from "../queries/queries";
+import Pagination from "./Pagination";
 
 class Planets extends React.Component {
   state = {
@@ -80,6 +81,7 @@ class Planets extends React.Component {
         <button name="prev" onClick={this.handlePage}>
           prev
         </button>
+        <Pagination page={this.state.page} count={this.state.pagesCount} />
         <button name="next" onClick={this.handlePage}>
           next
         </button>
