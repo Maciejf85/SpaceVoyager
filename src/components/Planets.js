@@ -1,71 +1,90 @@
 import React from "react";
-import { gql } from "apollo-boost";
-import { graphql } from 'react-apollo'
-
-
-const getPlanetsList = gql`
-  {
-    allPlanets {
-      planets{
-        id
-        name
-        population
-        gravity
-        terrains
-        orbitalPeriod
-        created
-        climates
-        rotationPeriod
-        surfaceWater
-    }
-  }
-}
-`;
+import { graphql } from "react-apollo";
+import { getPlanetsList } from "../queries/queries";
 
 class Planets extends React.Component {
   state = {
-    page: 1,
-    numbers: 0
+    page: this.props.page,
+    numbers: this.props.numbers,
+    pagesCount: this.props.numberOfPages
+  };
+
+  componentDidUpdate() {
+    console.log("componentDidUpdate");
+    const count = this.props.data.allPlanets.planets.length;
+    if (count !== this.state.numbers) {
+      this.setState({
+        numbers: count,
+        pagesCount: count / 10
+      });
+    }
   }
+  componentDidMount() {
+    if (this.props.data.loading !== true) {
+      const count = this.props.data.allPlanets.planets.length;
+      if (count !== this.state.numbers) {
+        this.setState({
+          numbers: count,
+          pagesCount: count / 10
+        });
+      }
+    }
+  }
+  handlePage = e => {
+    const value = e.target.name === "next" ? 1 : -1;
+    const currPage = this.state.page;
+    var page = currPage;
 
-
+    if (currPage + value >= 1 && currPage + value <= this.state.pagesCount) {
+      page = page + value;
+    }
+    this.setState({
+      page
+    });
+  };
+  viewDetails = e => {
+    const planetId = e.target.id;
+    const page = this.state.page;
+    this.props.item(planetId, page);
+  };
 
   displayPlanets = () => {
     const data = this.props.data;
     const { page } = this.state;
 
-
     if (data.loading) {
-      return (
-        <div>Loading Planets ...</div>
-      )
+      return <div>Loading Planets ...</div>;
     } else {
       return data.allPlanets.planets.map((item, index) => {
-        if (index >= ((page - 1) * 10) && index < page * 10) {
+        if (index >= (page - 1) * 10 && index < page * 10) {
           return (
             <li key={item.id}>
-              {item.name} {item.population} {item.gravity} {item.rotationPeriod} <button>more</button>
+              {item.name} {item.population} {item.gravity} {item.rotationPeriod}
+              <button id={item.id} onClick={this.viewDetails}>
+                more
+              </button>
             </li>
-          )
+          );
         }
-      })
+      });
     }
-  }
-
-
-
-
-
+  };
 
   render() {
     return (
       <>
-        <h1>Planets list {this.props.page}</h1>
-        <ul>
-          {this.displayPlanets()}
-        </ul>
+        <h1>
+          Planets list {this.state.page} / {this.state.pagesCount}
+        </h1>
+        <ul>{this.displayPlanets()}</ul>
+        <button name="prev" onClick={this.handlePage}>
+          prev
+        </button>
+        <button name="next" onClick={this.handlePage}>
+          next
+        </button>
       </>
-    )
+    );
   }
 }
 

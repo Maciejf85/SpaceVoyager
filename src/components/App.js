@@ -18,32 +18,31 @@ body{
 }
 `;
 
-const H1 = styled.h1`
-  font-size: ${({ big }) => (big ? "5em" : "3em")};
-  text-align: center;
-  letter-spacing: 5px;
-  color: ${({ isWhite }) => (isWhite ? "white" : "#f9c32b")};
-`;
+// const H1 = styled.h1`
+//   font-size: ${({ big }) => (big ? "5em" : "3em")};
+//   text-align: center;
+//   letter-spacing: 5px;
+//   color: ${({ isWhite }) => (isWhite ? "white" : "#f9c32b")};
+// `;
 const client = new ApolloClient({
   uri: `https://swapi.apis.guru`
 });
 
-
 class App extends React.Component {
-  state={
-    page:1,
-    selected:false
+  state = {
+    page: 1,
+    selected: false
+  };
+  render() {
+    return (
+      <>
+        <ApolloProvider client={client}>
+          <GlobalStyles />
+          <DisplayData />
+        </ApolloProvider>
+      </>
+    );
   }
-  render(){
-  return (
-    <>
-      <ApolloProvider client={client}>
-      <GlobalStyles/>
-        <DisplayData />
-      </ApolloProvider>
-    </>
-  );
-}
 }
 
 export default App;

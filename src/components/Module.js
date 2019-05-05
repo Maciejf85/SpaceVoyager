@@ -1,88 +1,65 @@
 import React from "react";
-import { gql } from "apollo-boost";
-import { graphql } from 'react-apollo'
-
-
-const getModuleInfo = gql`
-{planet(id:"cGxhbmV0czox") {
-  name
-  population
-  gravity
-  terrains
-  orbitalPeriod
-  created
-  climates
-  rotationPeriod
-  surfaceWater
-
-  filmConnection{
-    films{
-      id
-      title
-      director
-      releaseDate
-    }
-  }
-  residentConnection{
-    residents{
-      name
-      gender
-    }
-  }
-}}
-`;
+import { graphql } from "react-apollo";
+import { getModuleInfo } from "../queries/queries";
 
 class Module extends React.Component {
+  backToList = () => {
+    this.props.view(this.props.page);
+  };
 
   displayPlanets = () => {
     const data = this.props.data;
-    console.log(data.planet)
 
     if (data.loading) {
-      return (
-        <div>Loading Planets ...</div>
-      )
+      return <div>Loading Planets ...</div>;
     } else {
       return (
         <div>
-          <ul><h1>{data.planet.name}</h1>
-          <li>{data.planet.population}</li>
-          <li>{data.planet.gravity}</li>
-          <li>{data.planet.terrains}</li>
-          <li>{data.planet.orbitalPeriod}</li>
-          <li>{data.planet.created}</li>
-          <li>{data.planet.climates}</li>
-          <li>{data.planet.rotationPeriod}</li>
-          <li>{data.planet.surfaceWater}</li>
- 
+          <ul>
+            <h1>{data.planet.name}</h1>
+            <li>population: {data.planet.population}</li>
+            <li>gravity: {data.planet.gravity}</li>
+            <li>terrains: {data.planet.terrains}</li>
+            <li>orbitalPeriod: {data.planet.orbitalPeriod}</li>
+            <li>created: {data.planet.created}</li>
+            <li>climates: {data.planet.climates}</li>
+            <li>rotationPeriod: {data.planet.rotationPeriod}</li>
+            <li>surfaceWater: {data.planet.surfaceWater}</li>
+
             <h2>Movies</h2>
             {data.planet.filmConnection.films.map(item => (
               <li key={item.title}> {item.title}</li>
             ))}
             <h2>Persons</h2>
             {data.planet.residentConnection.residents.map(item => (
-              <li key={item.name}> {item.gender}</li>
+              <li key={item.name}>
+                name: {item.name} gender:
+                {item.gender === "n/a" ? "robot" : item.gender}
+              </li>
             ))}
-
           </ul>
 
-          <button onClick={this.props.view}>more</button>
+          <button onClick={this.backToList}>close</button>
         </div>
-      )
+      );
     }
-  }
-
-
+  };
 
   render() {
     return (
       <>
-        <ul>
-          {this.displayPlanets()}
-        </ul>
+        <ul>{this.displayPlanets()}</ul>
       </>
-    )
+    );
   }
 }
 
-export default graphql(getModuleInfo)(Module);
+export default graphql(getModuleInfo, {
+  options: props => {
+    return {
+      variables: {
+        id: props.id
+      }
+    };
+  }
+})(Module);
