@@ -1,6 +1,7 @@
 import React from "react";
 import Module from "./Module";
 import Planets from "./Planets";
+import H1 from "./layout/H1";
 
 class DisplayData extends React.Component {
   state = {
@@ -28,6 +29,10 @@ class DisplayData extends React.Component {
     const { selected, page, selected_id } = this.state;
     return (
       <>
+        <H1>
+          Plane<span>ts</span>
+        </H1>
+
         {!selected && <Planets page={page} item={this.viewDetails} />}
         {selected && (
           <Module

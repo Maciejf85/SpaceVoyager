@@ -2,6 +2,9 @@ import React from "react";
 import { graphql } from "react-apollo";
 import { getPlanetsList } from "../queries/queries";
 import Pagination from "./Pagination";
+import Loading from "./layout/Loading";
+import Module from "./layout/Module";
+import Button from "./layout/Button";
 
 class Planets extends React.Component {
   state = {
@@ -53,17 +56,18 @@ class Planets extends React.Component {
     const { page } = this.state;
 
     if (data.loading) {
-      return <div>Loading Planets ...</div>;
+      return <Loading>Loading Planets ...</Loading>;
     } else {
       return data.allPlanets.planets.map((item, index) => {
         if (index >= (page - 1) * 10 && index < page * 10) {
           return (
-            <li key={item.id}>
-              {item.name} {item.population} {item.gravity} {item.rotationPeriod}
+            <Module key={item.id}>
+              <div>{item.name}</div> {item.population} {item.gravity}{" "}
+              {item.rotationPeriod}
               <button id={item.id} onClick={this.viewDetails}>
                 more
               </button>
-            </li>
+            </Module>
           );
         } else {
           return null;
@@ -75,15 +79,14 @@ class Planets extends React.Component {
   render() {
     return (
       <>
-        <h1>Planets list</h1>
         <ul>{this.displayPlanets()}</ul>
-        <button name="prev" onClick={this.handlePageChange}>
+        <Button name="prev" onClick={this.handlePageChange}>
           prev
-        </button>
+        </Button>
         <Pagination page={this.state.page} count={this.state.pagesCount} />
-        <button name="next" onClick={this.handlePageChange}>
+        <Button name="next" onClick={this.handlePageChange}>
           next
-        </button>
+        </Button>
       </>
     );
   }
