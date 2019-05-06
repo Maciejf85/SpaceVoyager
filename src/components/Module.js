@@ -19,16 +19,28 @@ class Module extends React.Component {
             <h1>{data.planet.name}</h1>
             <li>population: {data.planet.population}</li>
             <li>gravity: {data.planet.gravity}</li>
-            <li>terrains: {data.planet.terrains}</li>
+            <ul>
+              terrains:
+              {data.planet.terrains.map(item => {
+                return <li key={item}>{item}</li>;
+              })}
+            </ul>
             <li>orbitalPeriod: {data.planet.orbitalPeriod}</li>
             <li>created: {data.planet.created}</li>
-            <li>climates: {data.planet.climates}</li>
+            <ul>
+              climates:
+              {data.planet.climates.map(item => {
+                return <li key={item}>{item}</li>;
+              })}
+            </ul>
             <li>rotationPeriod: {data.planet.rotationPeriod}</li>
             <li>surfaceWater: {data.planet.surfaceWater}</li>
 
             <h2>Movies</h2>
             {data.planet.filmConnection.films.map(item => (
-              <li key={item.title}> {item.title}</li>
+              <li key={item.title}>
+                {item.title} {item.director} {item.releaseDate}
+              </li>
             ))}
             <h2>Persons</h2>
             {data.planet.residentConnection.residents.map(item => (

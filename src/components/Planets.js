@@ -11,7 +11,6 @@ class Planets extends React.Component {
   };
 
   componentDidUpdate() {
-    console.log("componentDidUpdate");
     const count = this.props.data.allPlanets.planets.length;
     if (count !== this.state.numbers) {
       this.setState({
@@ -66,6 +65,8 @@ class Planets extends React.Component {
               </button>
             </li>
           );
+        } else {
+          return null;
         }
       });
     }
