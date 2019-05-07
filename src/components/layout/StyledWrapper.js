@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
 const StyledWrapper = styled.div`
-  height: 100vh;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  height: 100vh;
+
+  ul {
+    list-style: none;
+  }
 `;
 
 export default StyledWrapper;

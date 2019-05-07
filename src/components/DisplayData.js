@@ -29,8 +29,8 @@ class DisplayData extends React.Component {
     const { selected, page, selected_id } = this.state;
     return (
       <>
-        <H1>
-          Plane<span>ts</span>
+        <H1 big>
+          GraphQL<span>Voyager</span>
         </H1>
 
         {!selected && <Planets page={page} item={this.viewDetails} />}

@@ -5,6 +5,10 @@ import Pagination from "./Pagination";
 import Loading from "./layout/Loading";
 import Module from "./layout/Module";
 import Button from "./layout/Button";
+import ListWrapper from "./layout/ListWrapper";
+import H1 from "./layout/H1";
+import H2 from "./layout/H2";
+import PlanetInfo from "./layout/PlanetInfo";
 
 class Planets extends React.Component {
   state = {
@@ -62,11 +66,33 @@ class Planets extends React.Component {
         if (index >= (page - 1) * 10 && index < page * 10) {
           return (
             <Module key={item.id}>
-              <div>{item.name}</div> {item.population} {item.gravity}{" "}
-              {item.rotationPeriod}
-              <button id={item.id} onClick={this.viewDetails}>
+              <H1>{item.name}</H1>
+              <PlanetInfo>
+                <H2>
+                  population:
+                  <span>
+                    {item.population === null ? "0" : item.population}
+                  </span>
+                </H2>
+                <H2>
+                  gravity: <span>{item.gravity}</span>
+                </H2>
+                <H2>
+                  rotation Period: <span>{item.rotationPeriod}</span>
+                </H2>
+                <H2>
+                  orbital Period:<span>{item.orbitalPeriod}</span>
+                </H2>
+                <H2>
+                  terrain:
+                  {item.terrains.map(item => {
+                    return <span key={item}>{item} </span>;
+                  })}
+                </H2>
+              </PlanetInfo>
+              <Button module id={item.id} onClick={this.viewDetails}>
                 more
-              </button>
+              </Button>
             </Module>
           );
         } else {
@@ -79,14 +105,16 @@ class Planets extends React.Component {
   render() {
     return (
       <>
-        <ul>{this.displayPlanets()}</ul>
-        <Button name="prev" onClick={this.handlePageChange}>
-          prev
-        </Button>
-        <Pagination page={this.state.page} count={this.state.pagesCount} />
-        <Button name="next" onClick={this.handlePageChange}>
-          next
-        </Button>
+        <ListWrapper>{this.displayPlanets()}</ListWrapper>
+        <ListWrapper>
+          <Button name="prev" onClick={this.handlePageChange}>
+            &lt; prev
+          </Button>
+          <Pagination page={this.state.page} count={this.state.pagesCount} />
+          <Button name="next" onClick={this.handlePageChange}>
+            next &gt;
+          </Button>
+        </ListWrapper>
       </>
     );
   }

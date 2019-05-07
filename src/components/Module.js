@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { getModuleInfo } from "../queries/queries";
+import Button from "./layout/Button";
 
 class Module extends React.Component {
   backToList = () => {
@@ -51,7 +52,7 @@ class Module extends React.Component {
             ))}
           </ul>
 
-          <button onClick={this.backToList}>close</button>
+          <Button onClick={this.backToList}>close</Button>
         </div>
       );
     }

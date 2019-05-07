@@ -22,13 +22,15 @@ const getModuleInfo = gql`
   query($id: ID) {
     planet(id: $id) {
       name
-      population
-      gravity
-      terrains
-      orbitalPeriod
-      created
-      climates
+      diameter
       rotationPeriod
+      orbitalPeriod
+      gravity
+      population
+      climates
+      terrains
+      created
+      edited
       surfaceWater
 
       filmConnection {

@@ -1,4 +1,5 @@
 import React from "react";
+import PageList from "./layout/Pagination";
 
 const Pagination = ({ page, count }) => {
   const array = [];
@@ -9,16 +10,9 @@ const Pagination = ({ page, count }) => {
     <>
       <ul style={{ display: "flex", listStyle: "none" }}>
         {array.map((item, index) => (
-          <li
-            key={item}
-            style={
-              index + 1 === page
-                ? { color: "red", padding: "0 5px" }
-                : { color: "white", padding: "0 5px" }
-            }
-          >
+          <PageList isActive={page === index + 1} key={item}>
             {item}
-          </li>
+          </PageList>
         ))}
       </ul>
     </>
