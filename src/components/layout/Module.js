@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const Module = styled.li`
   position: relative;
-  width: 220px;
-  height: 323px;
+  width: 240px;
+  height: 350px;
   border: 1px solid rgba(255, 255, 255, 0.4);
   padding: 10px 15px;
   margin: 10px 20px;

@@ -30,7 +30,7 @@ class DisplayData extends React.Component {
     return (
       <>
         <H1 big>
-          GraphQL<span>Voyager</span>
+          Space<span>Voyager</span>
         </H1>
 
         {!selected && <Planets page={page} item={this.viewDetails} />}

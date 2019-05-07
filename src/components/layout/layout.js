@@ -20,7 +20,6 @@ body{
   background-attachment: fixed;   
   color:white;
 }
-
 `;
 
 const Layout = ({ children }) => (

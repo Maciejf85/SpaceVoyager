@@ -7,7 +7,6 @@ const Button = styled.button`
   transform: ${({ module }) => (module ? "translate(-50%,0)" : "none")};
   width: 140px;
   height: 25px;
-  /* line-height: 0px; */
   background: transparent;
   border-radius: 20px;
   outline: none;
@@ -18,8 +17,8 @@ const Button = styled.button`
 
   :hover {
     cursor: pointer;
-    border-color: #f9c32b;
-    color: #f9c32b;
+    background: rgba(255, 255, 255, 0.4);
+    font-weight: 700;
   }
 `;
 

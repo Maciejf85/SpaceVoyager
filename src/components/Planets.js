@@ -7,14 +7,14 @@ import Module from "./layout/Module";
 import Button from "./layout/Button";
 import ListWrapper from "./layout/ListWrapper";
 import H1 from "./layout/H1";
-import H2 from "./layout/H2";
 import PlanetInfo from "./layout/PlanetInfo";
 
 class Planets extends React.Component {
   state = {
     page: this.props.page,
     numbers: this.props.numbers,
-    pagesCount: this.props.numberOfPages
+    pagesCount: this.props.numberOfPages,
+    isReady: false
   };
 
   componentDidUpdate() {
@@ -22,7 +22,8 @@ class Planets extends React.Component {
     if (count !== this.state.numbers) {
       this.setState({
         numbers: count,
-        pagesCount: count / 10
+        pagesCount: count / 10,
+        isReady: true
       });
     }
   }
@@ -32,7 +33,8 @@ class Planets extends React.Component {
       if (count !== this.state.numbers) {
         this.setState({
           numbers: count,
-          pagesCount: count / 10
+          pagesCount: count / 10,
+          isReady: true
         });
       }
     }
@@ -60,7 +62,7 @@ class Planets extends React.Component {
     const { page } = this.state;
 
     if (data.loading) {
-      return <Loading>Loading Planets ...</Loading>;
+      return <Loading>Loading Planets</Loading>;
     } else {
       return data.allPlanets.planets.map((item, index) => {
         if (index >= (page - 1) * 10 && index < page * 10) {
@@ -68,27 +70,34 @@ class Planets extends React.Component {
             <Module key={item.id}>
               <H1>{item.name}</H1>
               <PlanetInfo>
-                <H2>
-                  population:
-                  <span>
-                    {item.population === null ? "0" : item.population}
-                  </span>
-                </H2>
-                <H2>
-                  gravity: <span>{item.gravity}</span>
-                </H2>
-                <H2>
-                  rotation Period: <span>{item.rotationPeriod}</span>
-                </H2>
-                <H2>
-                  orbital Period:<span>{item.orbitalPeriod}</span>
-                </H2>
-                <H2>
-                  terrain:
+                <li>
+                  <span>population:</span>
+                  {item.population === null ? "0" : item.population}
+                </li>
+                <li>
+                  <span>gravity:</span>
+                  {item.gravity}
+                </li>
+
+                <li>
+                  <span>rotation period:</span> {item.rotationPeriod}
+                </li>
+                <li>
+                  <span> orbital period:</span>
+                  {item.orbitalPeriod}
+                </li>
+                <ul>
+                  <span>terrain:</span>
                   {item.terrains.map(item => {
-                    return <span key={item}>{item} </span>;
+                    return <li key={item}>{item} </li>;
                   })}
-                </H2>
+                </ul>
+                <ul>
+                  <span>climates:</span>
+                  {item.climates.map(item => {
+                    return <li key={item}>{item} </li>;
+                  })}
+                </ul>
               </PlanetInfo>
               <Button module id={item.id} onClick={this.viewDetails}>
                 more
@@ -103,17 +112,25 @@ class Planets extends React.Component {
   };
 
   render() {
+    const { isReady } = this.state;
     return (
       <>
         <ListWrapper>{this.displayPlanets()}</ListWrapper>
         <ListWrapper>
-          <Button name="prev" onClick={this.handlePageChange}>
-            &lt; prev
-          </Button>
-          <Pagination page={this.state.page} count={this.state.pagesCount} />
-          <Button name="next" onClick={this.handlePageChange}>
-            next &gt;
-          </Button>
+          {isReady && (
+            <>
+              <Button name="prev" onClick={this.handlePageChange}>
+                &lt; prev
+              </Button>
+              <Pagination
+                page={this.state.page}
+                count={this.state.pagesCount}
+              />
+              <Button name="next" onClick={this.handlePageChange}>
+                next &gt;
+              </Button>
+            </>
+          )}
         </ListWrapper>
       </>
     );

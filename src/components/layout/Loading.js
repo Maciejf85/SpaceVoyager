@@ -1,9 +1,18 @@
 import styled from "styled-components";
 
 const LoadingText = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  color: #f9c32b;
+  font-size: 2.2rem;
+  background: rgba(0, 0, 0, 0.1);
+  width: 400px;
+  border-radius: 10px;
 `;
 
 export default LoadingText;

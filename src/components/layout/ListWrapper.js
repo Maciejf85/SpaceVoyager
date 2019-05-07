@@ -5,7 +5,7 @@ const ListWrapper = styled.ul`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 70%;
+  width: 80%;
 `;
 
 export default ListWrapper;

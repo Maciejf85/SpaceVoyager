@@ -1,7 +1,11 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { getModuleInfo } from "../queries/queries";
-import Button from "./layout/Button";
+import Loading from "./layout/Loading";
+import PlanetDetails from "./layout/PlanetDetails";
+import H1 from "./layout/H1";
+import CloseButton from "./layout/CloseButton";
+import PersonList from "./layout/PersonList";
 
 class Module extends React.Component {
   backToList = () => {
@@ -12,47 +16,76 @@ class Module extends React.Component {
     const data = this.props.data;
 
     if (data.loading) {
-      return <div>Loading Planets ...</div>;
+      return <Loading>Loading Planets </Loading>;
     } else {
       return (
         <div>
-          <ul>
-            <h1>{data.planet.name}</h1>
-            <li>population: {data.planet.population}</li>
-            <li>gravity: {data.planet.gravity}</li>
+          <PlanetDetails>
+            <H1 big>{data.planet.name}</H1>
+            <li>
+              <span>population: </span>
+              {data.planet.population}
+            </li>
+            <li>
+              <span>diameter: </span>
+              {data.planet.diameter}
+            </li>
+            <li>
+              <span>gravity:</span> {data.planet.gravity}
+            </li>
             <ul>
-              terrains:
+              <span>terrains:</span>
               {data.planet.terrains.map(item => {
                 return <li key={item}>{item}</li>;
               })}
             </ul>
-            <li>orbitalPeriod: {data.planet.orbitalPeriod}</li>
-            <li>created: {data.planet.created}</li>
+            <li>
+              <span>rotation period:</span> {data.planet.rotationPeriod}
+            </li>
+            <li>
+              <span>orbital period:</span> {data.planet.orbitalPeriod}
+            </li>
+            <li>
+              <span>created:</span> {data.planet.created}
+            </li>
+            <li>
+              <span>edited:</span> {data.planet.edited}
+            </li>
             <ul>
-              climates:
+              <span>climates:</span>
               {data.planet.climates.map(item => {
                 return <li key={item}>{item}</li>;
               })}
             </ul>
-            <li>rotationPeriod: {data.planet.rotationPeriod}</li>
-            <li>surfaceWater: {data.planet.surfaceWater}</li>
+            <li>
+              <span>rotationPeriod:</span> {data.planet.rotationPeriod}
+            </li>
+            <li>
+              <span>surfaceWater:</span> {data.planet.surfaceWater}
+            </li>
 
             <h2>Movies</h2>
             {data.planet.filmConnection.films.map(item => (
               <li key={item.title}>
-                {item.title} {item.director} {item.releaseDate}
+                <span>title:</span> {item.title}
+                <span>director:</span>
+                {item.director}
+                <span>date:</span>
+                {item.releaseDate}
               </li>
             ))}
             <h2>Persons</h2>
-            {data.planet.residentConnection.residents.map(item => (
-              <li key={item.name}>
-                name: {item.name} gender:
-                {item.gender === "n/a" ? "robot" : item.gender}
-              </li>
-            ))}
-          </ul>
-
-          <Button onClick={this.backToList}>close</Button>
+            <PersonList>
+              {data.planet.residentConnection.residents.map(item => (
+                <li key={item.name}>
+                  <span>name:</span> {item.name}
+                  <span className="green">gender:</span>
+                  {item.gender === "n/a" ? "robot" : item.gender}
+                </li>
+              ))}
+              <CloseButton onClick={this.backToList}>back</CloseButton>
+            </PersonList>
+          </PlanetDetails>
         </div>
       );
     }
