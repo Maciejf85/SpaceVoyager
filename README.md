@@ -2,5 +2,10 @@
 
 [Live demo : http://maciejf.pl/planetsApp/](http://maciejf.pl/planetsApp/)
 
-![Planets list](http://maciejf.pl/img/planets/planets1.jpg)
-![Planet info](http://maciejf.pl/img/planets/planets2.jpg)
+
+<p align="center">
+  <img src="http://maciejf.pl/img/planets/planets1.jpg"  title="Main page">
+</p>
+<p align="center">
+  <img src="http://maciejf.pl/img/planets/planets2.jpg"  title="Details">
+</p>
