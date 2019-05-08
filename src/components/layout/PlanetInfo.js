@@ -30,7 +30,6 @@ const PlanetInfo = styled.ul`
   }
   @media (min-width: 421px) and (max-width: 1023px) and (orientation: landscape) {
     font-size: 0.7rem;
-    /* text-align: center; */
     display: grid;
     grid-template-columns: 40% 30% 30%;
     grid-template-rows: auto auto;

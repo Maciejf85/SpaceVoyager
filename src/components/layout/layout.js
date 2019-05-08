@@ -12,7 +12,7 @@ html{
 }
 body{
   margin:0;
-  min-height:100vh;
+  /* height:100vh; */
   font-family: 'Montserrat', sans-serif;
   background:#10181b;
   background-image:url('http://maciejf.pl/img/planets/5_small.jpg');

@@ -4,7 +4,7 @@ const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding-bottom: 25px;
+  /* padding-bottom: 25px; */
 
   ul {
     list-style: none;
