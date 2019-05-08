@@ -6,6 +6,9 @@ const ListWrapper = styled.ul`
   align-items: center;
   flex-wrap: wrap;
   width: 80%;
+  @media (max-width: 1023px) {
+    width: 100%;
+  }
 `;
 
 export default ListWrapper;

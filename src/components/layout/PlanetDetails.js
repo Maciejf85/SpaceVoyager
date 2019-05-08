@@ -6,7 +6,6 @@ const PlanetDetails = styled.ul`
   min-height: 700px;
   width: 550px;
   display: flex;
-  /* align-items: center; */
   flex-direction: column;
   padding: 10px 15px;
   border: 1px solid white;
@@ -28,6 +27,12 @@ const PlanetDetails = styled.ul`
   ul > li {
     list-style-type: circle;
     margin-left: 30px;
+  }
+
+  @media (max-width: 420px) {
+    width: 100%;
+    height: 100%;
+    padding: 10px 5px;
   }
 `;
 

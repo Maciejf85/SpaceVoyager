@@ -5,6 +5,7 @@ import Pagination from "./Pagination";
 import Loading from "./layout/Loading";
 import Module from "./layout/Module";
 import Button from "./layout/Button";
+import PageButton from "./layout/PageButton";
 import ListWrapper from "./layout/ListWrapper";
 import H1 from "./layout/H1";
 import PlanetInfo from "./layout/PlanetInfo";
@@ -119,16 +120,16 @@ class Planets extends React.Component {
         <ListWrapper>
           {isReady && (
             <>
-              <Button name="prev" onClick={this.handlePageChange}>
+              <PageButton name="prev" onClick={this.handlePageChange}>
                 &lt; prev
-              </Button>
+              </PageButton>
               <Pagination
                 page={this.state.page}
                 count={this.state.pagesCount}
               />
-              <Button name="next" onClick={this.handlePageChange}>
+              <PageButton name="next" onClick={this.handlePageChange}>
                 next &gt;
-              </Button>
+              </PageButton>
             </>
           )}
         </ListWrapper>

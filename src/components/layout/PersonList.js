@@ -8,6 +8,9 @@ const PersonList = styled.div`
   .green {
     color: #54d422;
   }
+  @media (max-width: 420px) {
+    display: block;
+  }
 `;
 
 export default PersonList;

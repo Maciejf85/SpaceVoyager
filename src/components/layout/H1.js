@@ -18,6 +18,10 @@ const H1 = styled.h1`
     font-weight: 700;
     font-style: italic;
   }
+
+  @media (max-width: 360px) {
+    font-size: ${({ big }) => (big ? "2rem" : "1.4rem")};
+  }
 `;
 
 export default H1;

@@ -8,9 +8,11 @@ const GlobalStyles = createGlobalStyle`
 }
 html{
   font-size: 15px;
+
 }
 body{
   margin:0;
+  min-height:100vh;
   font-family: 'Montserrat', sans-serif;
   background:#10181b;
   background-image:url('http://maciejf.pl/img/planets/5_small.jpg');
@@ -20,6 +22,7 @@ body{
   background-attachment: fixed;   
   color:white;
 }
+
 `;
 
 const Layout = ({ children }) => (

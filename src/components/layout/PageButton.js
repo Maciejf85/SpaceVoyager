@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Button = styled.button`
+const PageSelect = styled.button`
   position: ${({ module }) => (module ? "absolute" : "static")};
   bottom: 10px;
   right: 50%;
@@ -20,14 +20,10 @@ const Button = styled.button`
     background: rgba(255, 255, 255, 0.4);
     font-weight: 700;
   }
-  @media (min-width: 361px) and (max-width: 1024px) {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    transform: none;
+  @media (max-width: 1024px) {
     height: 25px;
-    width: 70px;
+    width: 65px;
   }
 `;
 
-export default Button;
+export default PageSelect;
