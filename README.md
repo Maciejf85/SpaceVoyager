@@ -1,6 +1,6 @@
 # Space Voyager
 
-[Live demo : http://maciejf.pl/planetsApp/](http://maciejf.pl/planetsApp/)
+[Live demo : https://maciejf.pl/planetsApp/](https://maciejf.pl/planetsApp/)
 
 ![Planets list](http://maciejf.pl/img/spaceVoyager/responsive.jpg)
 
